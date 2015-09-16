@@ -1,0 +1,1 @@
+{"global": true, "type": "org.graylog2.inputs.raw.tcp.RawTCPInput", "title" : "Raw/Plaintext TCP 5555", "configuration": {"bind_address": "0.0.0.0", "port": 55555}}

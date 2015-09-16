@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sv start graylog || exit 1
+
+source /etc/envvars
+env
+
+cd /graylog-web-interface
+exec 2>&1
+exec ./bin/graylog-web-interface
