@@ -22,7 +22,7 @@ RUN add-apt-repository ppa:webupd8team/java -y && \
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 #ElasticSearch
-RUN wget -O - https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.5.2.tar.gz | tar xz && \
+RUN wget -O - https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.7.5.tar.gz | tar xz && \
     mv elasticsearch-* elasticsearch
 
 #MongoDB
@@ -32,11 +32,11 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
 RUN apt-get install -y mongodb-org
 
 #server
-RUN wget -O - https://packages.graylog2.org/releases/graylog2-server/graylog-1.2.0.tgz | tar zx
+RUN wget -O - https://packages.graylog2.org/releases/graylog2-server/graylog-1.3.3.tgz | tar zx
 RUN mv graylog* graylog
 
 #web interface
-RUN wget -O - https://packages.graylog2.org/releases/graylog2-web-interface/graylog-web-interface-1.2.0.tgz | tar zx
+RUN wget -O - https://packages.graylog2.org/releases/graylog2-web-interface/graylog-web-interface-1.3.3.tgz | tar zx
 RUN mv graylog-web-interface* graylog-web-interface
 
 RUN mkdir -p /etc/graylog/server

@@ -1,3 +1,4 @@
 #!/bin/bash
+source helper
 
-docker build $@ -t graylog . 
+docker build $@ -t ${IMAGE} . 
