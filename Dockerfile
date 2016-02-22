@@ -22,7 +22,7 @@ RUN add-apt-repository ppa:webupd8team/java -y && \
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 #ElasticSearch
-RUN wget -O - https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.7.5.tar.gz | tar xz && \
+RUN wget -O - https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.7.3.tar.gz | tar xz && \
     mv elasticsearch-* elasticsearch
 
 #MongoDB
@@ -53,15 +53,4 @@ COPY syslogTCPInput514.json /
 COPY gelfUDPInput12201.json /
 COPY gelfTCPInput12201.json /
 COPY rawTCPInput5555.json /
-RUN export > /etc/envvars && \
-    runsv /etc/service/mongodb & \
-    runsv /etc/service/elasticsearch & \
-    runsv /etc/service/graylog & \
-    until /usr/bin/curl http://127.0.0.1:12900/system/inputs; do echo "waiting for API server to come online..."; sleep 3; done && \
-    curl -u admin:admin -X POST -H "Content-Type: application/json" -d @syslogTCPInput514.json localhost:12900/system/inputs && \
-    curl -u admin:admin -X POST -H "Content-Type: application/json" -d @gelfUDPInput12201.json localhost:12900/system/inputs && \
-    curl -u admin:admin -X POST -H "Content-Type: application/json" -d @gelfTCPInput12201.json localhost:12900/system/inputs && \
-    curl -u admin:admin -X POST -H "Content-Type: application/json" -d @rawTCPInput5555.json localhost:12900/system/inputs && \
-    sv stop graylog && \
-    sv stop elasticsearch && \
-    sv stop mongodb 
+COPY init.sh /
