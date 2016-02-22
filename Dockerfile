@@ -53,4 +53,5 @@ COPY syslogTCPInput514.json /
 COPY gelfUDPInput12201.json /
 COPY gelfTCPInput12201.json /
 COPY rawTCPInput5555.json /
+COPY mycontentpack.json /
 COPY init.sh /

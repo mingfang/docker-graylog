@@ -1,0 +1,66 @@
+{
+  "id" : null,
+  "name" : "mycontentpack",
+  "description" : "my content pack",
+  "category" : "mycontentpack",
+  "inputs" : [ {
+    "title" : "Raw/Plaintext TCP 5555",
+    "configuration" : {
+      "bind_address" : "0.0.0.0",
+      "port" : 55555
+    },
+    "type" : "org.graylog2.inputs.raw.tcp.RawTCPInput",
+    "global" : true,
+    "extractors" : [ ],
+    "static_fields" : { }
+  }, {
+    "title" : "GELF UDP 12201",
+    "configuration" : {
+      "bind_address" : "0.0.0.0",
+      "port" : 12201
+    },
+    "type" : "org.graylog2.inputs.gelf.udp.GELFUDPInput",
+    "global" : true,
+    "extractors" : [ {
+      "title" : "key value extractor",
+      "type" : "COPY_INPUT",
+      "configuration" : { },
+      "converters" : [ {
+        "type" : "TOKENIZER",
+        "configuration" : { }
+      } ],
+      "order" : 0,
+      "cursor_strategy" : "COPY",
+      "target_field" : "message",
+      "source_field" : "message",
+      "condition_type" : "NONE",
+      "condition_value" : ""
+    } ],
+    "static_fields" : { }
+  }, {
+    "title" : "GELF TCP 12201",
+    "configuration" : {
+      "bind_address" : "0.0.0.0",
+      "port" : 12201
+    },
+    "type" : "org.graylog2.inputs.gelf.tcp.GELFTCPInput",
+    "global" : true,
+    "extractors" : [ ],
+    "static_fields" : { }
+  }, {
+    "title" : "Syslog TCP 514",
+    "configuration" : {
+      "allow_override_date" : true,
+      "bind_address" : "0.0.0.0",
+      "port" : 514
+    },
+    "type" : "org.graylog2.inputs.syslog.tcp.SyslogTCPInput",
+    "global" : true,
+    "extractors" : [ ],
+    "static_fields" : { }
+  } ],
+  "streams" : [ ],
+  "outputs" : [ ],
+  "dashboards" : [ ],
+  "grok_patterns" : [ ]
+}
